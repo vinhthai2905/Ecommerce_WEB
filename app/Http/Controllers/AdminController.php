@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -21,6 +22,10 @@ class AdminController extends Controller
             'password' => 'required'
         ]);
         
+        if(auth()->attempt($validatedDatas))
+        {
+            return redirect()->route('admin.login');
+        }
     }
 
     public function Register(){
