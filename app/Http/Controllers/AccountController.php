@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Mail;
 use App\Models\Customer;
 use App\Mail\VerifyAccount;
+use App\Http\Middleware\Authenticate;
 
 class AccountController extends Controller
 {
@@ -13,8 +14,35 @@ class AccountController extends Controller
         return view('account.login');
     }
 
-    public function check_login(){
+    public function check_login(Request $request){
+        $request->validate([
+            'email' => 'required|email|exists:customers',
+            'password' => 'required|min:4',
 
+       ],[
+            'email.email' => 'Check your email format.',
+            'email.required' => 'Email cannot be empty.',
+            'email.exists' => 'Email not existed.',
+            'password.required' => 'Password cannot be empty.',
+            'password.min' => 'Password need at least 4 characters long.',
+            
+       ]);
+
+       $datas = $request->only('email', 'password');
+       $check = auth('cus')->attempt($datas);
+
+       if($check){
+           if(auth('cus')->user()->email_verifided_at == ''){
+                auth('cus')->logout();
+                return redirect()->back()->with('failed', 'Error, your account is not verified.');
+           } 
+
+           $name = Customer::where('email', $datas['email'])->value('name');
+
+           return redirect()->route('home.index')->with('name', $name);
+       }
+       
+       return redirect()->back()->with('failed', 'Your account or password invalid');
     }
 
     public function register(){
@@ -56,7 +84,7 @@ class AccountController extends Controller
             
             return redirect()
             ->route('account.login')
-            ->with('success', 'Registered successfully, check your mail box to verify');
+            ->with('success', 'Registered successfully, check your mail box to verify.');
        }
        return redirect()->back()->with('failed', 'Something wrong, please try again');
     }
