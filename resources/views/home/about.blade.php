@@ -1,8 +1,9 @@
 @extends('master.main')
 
 @section('main')
-  <!-- main-area -->
-  <main>
+
+<!-- main-area -->
+<main>
 
     <!-- breadcrumb-area -->
     <section class="breadcrumb-area tg-motion-effects breadcrumb-bg" data-background="uploads/bg/breadcrumb_bg.jpg">
@@ -232,5 +233,6 @@
 
 </main>
 <!-- main-area-end -->
+
 
 @stop()
