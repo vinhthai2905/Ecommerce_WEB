@@ -3,6 +3,7 @@
     
 
 <head>
+    <base href="/">
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>@yield('title')</title>
@@ -67,9 +68,9 @@
                             <div class="header-top-right">
                                 <div class="header-top-menu">
                                     <ul class="list-wrap">
-                                        <li><a href="contact.html">Help</a></li>
-                                        <li><a href="contact.html">Support</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="{{ route('account.login') }}">Login</a></li>
+                                        <li><a href="{{ route('account.register') }}">Register</a></li>
+                                        <li><a href="{{ route('account.logout') }}">Logout</a></li>
                                     </ul>
                                 </div>
                                 <div class="header-top-social">
