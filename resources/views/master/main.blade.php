@@ -25,6 +25,8 @@
         <link rel="stylesheet" href="assets/css/default.css">
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="assets/css/responsive.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" 
+        integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
     <body>
 
@@ -68,9 +70,14 @@
                             <div class="header-top-right">
                                 <div class="header-top-menu">
                                     <ul class="list-wrap">
-                                        <li><a href="{{ route('account.login') }}">Login</a></li>
-                                        <li><a href="{{ route('account.register') }}">Register</a></li>
-                                        <li><a href="{{ route('account.logout') }}">Logout</a></li>
+                                        @if(auth('cus')->check())
+                                            <li><a href="">Hi, {{auth('cus')->user()->name }}</a></li>
+                                            <li><a href="{{ route('account.profile') }}">Profile</a></li>
+                                            <li><a href="{{ route('account.logout') }}">Logout</a></li>
+                                        @else
+                                            <li><a href="{{ route('account.login') }}">Login</a></li>
+                                            <li><a href="{{ route('account.register') }}">Register</a></li>
+                                        @endif
                                     </ul>
                                 </div>
                                 <div class="header-top-social">
@@ -340,6 +347,43 @@
         <script src="assets/js/ajax-form.js"></script>
         <script src="assets/js/wow.min.js"></script>
         <script src="assets/js/main.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
+        
+        @if(Session::has('name'))
+        <script>
+            $.toast({
+                heading: 'Login Successful',
+                text: 'You have successfully logged in.',
+                showHideTransition: 'slide',
+                icon: 'success',
+                position: 'top-center'
+            })
+        </script>
+        @endif
+
+        @if(Session::has('verified_success'))
+        <script>
+            $.toast({
+                heading: 'Successfully Verified',
+                text: 'You have successfully verified your account. Now you can login.',
+                showHideTransition: 'slide',
+                icon: 'success',
+                position: 'top-center'
+            })
+        </script>
+        @endif
+
+        @if(Session::has('login_failed'))
+        <script>
+            $.toast({
+                heading: 'Login Failed',
+                text: "{{ Session::get('login_failed') }}",
+                showHideTransition: 'slide',
+                icon: 'warning',
+                position: 'top-center'
+            })
+        </script>
+        @endif
     </body>
 
 </html>

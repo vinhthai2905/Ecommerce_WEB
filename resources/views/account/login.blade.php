@@ -37,12 +37,17 @@
                                 <h2 class="title">Get in <span>Touch</span></h2>
                             </div>
                             <p>Meat provide well shaped fresh and the organic meat well <br> animals is Humans have hunted schistoric</p>
-                            @if(session('success'))
+                            @if(session('resgister_successful'))
                             <div class="alert alert-success">
-                                {{ session('success') }}
+                                {{ session('resgister_successful') }}
                             </div>
                             @endif
-                            <form action="{{ route('account.check_register') }}" method="POST">
+                            @if(session('login_failed'))
+                            <div class="alert alert-danger">
+                                {{ session('login_failed') }}
+                            </div>
+                            @endif
+                            <form action="" method="POST">
                             @csrf
                                 <div class="contact-form-wrap">
                                     <div class="form-grp">
@@ -57,8 +62,8 @@
                                             <span class="text-danger">{{ $errors->first('password') }}</span>
                                         @endif
                                     </div>
-                                    <h1 class="title wow fadeInUp" data-wow-delay=".2s">{{ session('name') }}</h1>
-                                    <button type="submit">Create account</button>
+                                    {{-- <h1 class="title wow fadeInUp" data-wow-delay=".2s">{{ session('name') }}</h1> --}}
+                                    <button type="submit">Login</button>
                                 </div>
                             </form>
                         </div>
