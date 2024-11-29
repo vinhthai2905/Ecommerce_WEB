@@ -22,6 +22,7 @@ Route::get('/about', [HomeController::class, 'about'])->name('home.about');
 
 Route::group(['prefix' => 'account'], function(){
     Route::get('/login', [AccountController::class, 'login'])->name('account.login');
+    Route::get('/logout', [AccountController::class, 'logout'])->name('account.logout');
     Route::get('/verify/{email}', [AccountController::class, 'verify'])->name('account.verify');
     Route::post('/login', [AccountController::class, 'check_login']);
 

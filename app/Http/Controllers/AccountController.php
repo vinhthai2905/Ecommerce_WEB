@@ -7,11 +7,17 @@ use Mail;
 use App\Models\Customer;
 use App\Mail\VerifyAccount;
 use App\Http\Middleware\Authenticate;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class AccountController extends Controller
 {
     public function login(){
         return view('account.login');
+    }
+
+    public function logout(){
+        auth('cus')->logout();
+        return redirect()->route('account.login');
     }
 
     public function check_login(Request $request){
@@ -32,9 +38,9 @@ class AccountController extends Controller
        $check = auth('cus')->attempt($datas);
 
        if($check){
-           if(auth('cus')->user()->email_verifided_at == ''){
+           if(auth('cus')->user()->email_verified_at == ''){
                 auth('cus')->logout();
-                return redirect()->back()->with('failed', 'Error, your account is not verified.');
+                return redirect()->back()->with('login_failed', 'Warning! Your account is not verified.');
            } 
 
            $name = Customer::where('email', $datas['email'])->value('name');
@@ -42,7 +48,7 @@ class AccountController extends Controller
            return redirect()->route('home.index')->with('name', $name);
        }
        
-       return redirect()->back()->with('failed', 'Your account or password invalid');
+       return redirect()->back()->with('login_failed', 'Your account or password invalid.');
     }
 
     public function register(){
@@ -80,13 +86,24 @@ class AccountController extends Controller
        $datas['password'] = bcrypt($request->password);
 
        if($acc = Customer::create($datas)){
-            Mail::to($acc->email)->send(new VerifyAccount($acc)); 
-            
+
+        try {
+            Mail::to($acc->email)->send(new VerifyAccount($acc));
+        } 
+        catch (\Exception $e) {
+            \Log::error('Mail sending failed: ' . $e->getMessage());
+    
             return redirect()
-            ->route('account.login')
-            ->with('success', 'Registered successfully, check your mail box to verify.');
+                ->route('account.register')
+                ->with('verify_sent_error', 'Registration successful, but failed to send verification email. Please try again later.');
+        }
+          
+        return redirect()
+        ->route('account.login')
+        ->with('resgister_successful', 'Registered successfully, check your mail box to verify.');
+
        }
-       return redirect()->back()->with('failed', 'Something wrong, please try again');
+       return redirect()->back()->with('register_failed', 'Something wrong, please try again.');
     }
 
     public function verify($email){
@@ -97,9 +114,9 @@ class AccountController extends Controller
         ->whereNull('email_verified_at')
         ->update(['email_verified_at' => now()]);
         
-        // return redirect()
-        // ->route('account.login')
-        // ->with('success', "Verified successfully, please login");
+        return redirect()
+        ->route('account.login')
+        ->with('verified_success', "Verified successfully, now you can login.");
     }
 
     public function profile(){

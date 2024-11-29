@@ -37,6 +37,11 @@
                                 <h2 class="title">Get in <span>Touch</span></h2>
                             </div>
                             <p>Meat provide well shaped fresh and the organic meat well <br> animals is Humans have hunted schistoric</p>
+                            @if(session('verify_sent_error'))
+                            <div class="alert alert-danger">
+                                {{ session('verify_sent_error') }}
+                            </div>
+                            @endif
                             <form action="{{ route('account.check_register') }}" method="POST">
                             @csrf
                                 <div class="contact-form-wrap">

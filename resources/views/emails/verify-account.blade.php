@@ -26,9 +26,10 @@
         <a href="https://support.yourstore.com">Support Center</a>
     </p>
 
-    <p>Best regards,<br>Your Online Store Team</p>
-
     <hr>
+
+    <p>Best regards,<br>Bemet Store Team</p>
+
 
 </body>
 </html>
