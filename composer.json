@@ -10,7 +10,8 @@
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.3",
         "laravel/socialite": "^5.16",
-        "laravel/tinker": "^2.8"
+        "laravel/tinker": "^2.8",
+        "ext-http": "*"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.1",
