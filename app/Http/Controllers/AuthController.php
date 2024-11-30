@@ -7,19 +7,23 @@ use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Resources\UserResource;
-use App\Traits\HttpResponses;
-use Illuminate\Support\Facades\Password;
 use App\Models\User;
+use App\Traits\HttpResponses;
+use http\Client\Response;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use \Illuminate\Http\JsonResponse;
+use \Illuminate\Foundation\Application;
+use Illuminate\Contracts\Routing\ResponseFactory;
 
 class AuthController extends Controller
 {
     use HttpResponses;
 
-    public function info(Request $request)
+    public function info(Request $request): JsonResponse
     {
         if (!$request->header('Authorization')) {
             return $this->errorResponse('Unauthorized', 401);
@@ -27,7 +31,7 @@ class AuthController extends Controller
         return $this->successResponse(new UserResource($request->user()), 'message', 200);
     }
 
-    public function login(LoginUserRequest $request)
+    public function login(LoginUserRequest $request): JsonResponse
     {
         $request->validated($request->all());
 
@@ -43,7 +47,7 @@ class AuthController extends Controller
         ], 'Login successful', 200);
     }
 
-    public function register(StoreUserRequest $request)
+    public function register(StoreUserRequest $request): JsonResponse
     {
         $request->validated($request->all());
 
@@ -68,7 +72,7 @@ class AuthController extends Controller
         return $this->successResponse('', 'LogOut Success', 200);
     }
 
-    public function forgot_password(ForgetPasswordRequest $request)
+    public function forgot_password(ForgetPasswordRequest $request) : JsonResponse
     {
         $request->validated();
 
@@ -81,7 +85,7 @@ class AuthController extends Controller
             : $this->errorResponse('Send Reset Password Fail', 400);
     }
 
-    public function reset_password(ResetPasswordRequest $request)
+    public function reset_password(ResetPasswordRequest $request) : JsonResponse
     {
         $request->validated();
         $status = Password::reset(
@@ -100,7 +104,7 @@ class AuthController extends Controller
             : $this->errorResponse('Update Password Fail', 400);
     }
 
-    public function getImage($filename)
+    public function getImage($filename) : Application|JsonResponse|ResponseFactory
     {
         $publicPath = "public/{$filename}";
 
