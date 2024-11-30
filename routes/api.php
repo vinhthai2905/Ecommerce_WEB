@@ -7,6 +7,8 @@ use App\Http\Middleware\CheckIsAdminMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\CategoriesController;
 
 // public client
 Route::get('/images/{filename}', [AuthController::class, 'getImage'])->middleware('guest');
@@ -42,6 +44,8 @@ Route::post('/reset-password', [AuthController::class, 'reset_Password'])
 Route::group(['middleware' => ['auth:sanctum', CheckIsAdminMiddleware::class]], routes: function () {
 
     Route::resource('/users', UsersController::class);
+    Route::resource('/categories', CategoriesController::class);
+    Route::resource('/products', ProductsController::class);
 
 });
 
