@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\UserResource;
+use App\Http\Resources\UsersResources;
 use App\Models\User;
 use App\Traits\HttpResponses;
 use Hash;
@@ -37,7 +37,7 @@ class ProviderSocialiteController extends Controller
 
         return view('callback', [
             'response' => [
-                'user' => new UserResource($user),
+                'user' => new UsersResources($user),
                 'token' => $token,
             ],
         ]);

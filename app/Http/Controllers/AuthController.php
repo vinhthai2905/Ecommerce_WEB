@@ -6,7 +6,7 @@ use App\Http\Requests\ForgetPasswordRequest;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Http\Requests\StoreUserRequest;
-use App\Http\Resources\UserResource;
+use App\Http\Resources\UsersResources;
 use App\Models\User;
 use App\Traits\HttpResponses;
 use http\Client\Response;
@@ -28,7 +28,7 @@ class AuthController extends Controller
         if (!$request->header('Authorization')) {
             return $this->errorResponse('Unauthorized', 401);
         }
-        return $this->successResponse(new UserResource($request->user()), 'message', 200);
+        return $this->successResponse(new UsersResources($request->user()), 'message', 200);
     }
 
     public function login(LoginUserRequest $request): JsonResponse
@@ -42,7 +42,7 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->firstOrFail();
 
         return $this->successResponse([
-            'user' => new UserResource($request->user()),
+            'user' => new UsersResources($request->user()),
             'token' => $user->createToken('Token Auth: ' . $user->name)->plainTextToken,
         ], 'Login successful', 200);
     }
@@ -61,7 +61,7 @@ class AuthController extends Controller
         $user->sendEmailVerificationNotification();
 
         return $this->successResponse([
-            'user' => new UserResource($user),
+            'user' => new UsersResources($user),
             'token' => $user->createToken('API TOKEN OF ' . $user->name)->plainTextToken,
         ], 'Register successful', 200);
     }
