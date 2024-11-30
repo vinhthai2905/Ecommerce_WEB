@@ -15,6 +15,8 @@ use App\Http\Controllers\ImageProductsController;
 // public client
 Route::get('/images/{filename}', [AuthController::class, 'getImage'])->middleware('guest');
 
+Route::get('/products', [ProductsController::class, 'index'])->middleware('guest');
+
 // AUTH
 // EMAIL Verification
 Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])
