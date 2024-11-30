@@ -67,7 +67,9 @@ class AuthController extends Controller
     }
     public function logout(Request $request)
     {
+        $request->user()->currentAccessToken()->delete();
 
+        return $this->successResponse('', 'LogOut Success', 200);
     }
 
     public function forgot_password(ForgetPasswordRequest $request) : JsonResponse
