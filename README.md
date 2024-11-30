@@ -7,7 +7,7 @@
 - Tailwind CSS
 - MySQL
 
-## Backend: Laravel 11
+## Backend: Laravel 10
 
 ### Backend Features
 
