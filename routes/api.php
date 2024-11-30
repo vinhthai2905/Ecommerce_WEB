@@ -36,6 +36,7 @@ Route::group(['middleware' => ['auth:sanctum', CheckIsAdminMiddleware::class]], 
     Route::resource('/users', UsersController::class);
     Route::resource('/categories', CategoriesController::class);
     Route::resource('/products', ProductsController::class);
+    Route::resource('/image-products', ImageProductsController::class);
 
 });
 
