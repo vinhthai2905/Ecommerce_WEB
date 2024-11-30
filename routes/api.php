@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmailVerificationController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProviderSocialiteController;
 use App\Http\Middleware\CheckIsAdminMiddleware;
 use Illuminate\Http\Request;
@@ -34,6 +35,14 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 // auth
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
+
+// middleware auth:sanctum
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    // Auth
+    Route::get('/info', [AuthController::class, 'info']);
+    Route::get('/notifications', [NotificationController::class, 'getNotifications']);
+    Route::post('/notifications', [NotificationController::class, 'readNotification']);
+});
 
 Route::post('/forgot-password', [AuthController::class, 'forgot_Password'])
     ->middleware('guest')->name('password.email');
