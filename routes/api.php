@@ -11,7 +11,11 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ImageProductsController;
+<<<<<<< HEAD
 use App\Http\Controllers\CustomerController;
+=======
+use App\Http\Controllers\BillsController;
+>>>>>>> 68df1f7 (crud for billing orders)
 
 // public client
 Route::get('/images/{filename}', [AuthController::class, 'getImage'])->middleware('guest');
@@ -70,6 +74,7 @@ Route::group(['middleware' => ['auth:sanctum', CheckIsAdminMiddleware::class]], 
     Route::resource('/categories', CategoriesController::class);
     Route::resource('/products', ProductsController::class);
     Route::resource('/image-products', ImageProductsController::class);
+    Route::resource('/bills', BillsController::class);
 
 });
 
