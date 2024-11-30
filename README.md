@@ -1,10 +1,9 @@
 # Project PHP
 
-## Technology
+## Technologies, Libraries
 
 - Laravel 10
-- Blade template
-- Tailwind CSS
+- Sanctum(Authenticating)
 - MySQL
 
 ## Backend: Laravel 10
@@ -13,24 +12,24 @@
 
 #### Authentication
 
-| Feature           | Status                                                                                                                     |
-| ----------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| Login             | ![Login Icon](https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/ApprovedChanges.svg)           |
-| Register          | ![Register Icon](https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/ApprovedChanges.svg)        |
+| Feature           | Status                                                                                                                  |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Login             | ![Login Icon](https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/ApprovedChanges.svg)        |
+| Register          | ![Register Icon](https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/ApprovedChanges.svg)     |
 | Forget Password   | ![Forget Password Icon](https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/ApprovedChanges.svg) |
-| Login with GitHub | ![Login With GitHub](https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/ApprovedChanges.svg)    |
-| Login with Gmail  | ![Login With Gmail](https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/ApprovedChanges.svg)     |
+| Login with GitHub |  |
+| Login with Gmail  |  |
 
 #### Shop
 
-| Feature        | Status                                                                                                                     |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| GET            | ![Login Icon](https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/ApprovedChanges.svg)           |
-| POST           | ![Register Icon](https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/ApprovedChanges.svg)        |
-| PUT            | ![Forget Password Icon](https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/ApprovedChanges.svg) |
-| DELETE         | ![Login With Facebook](https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/ApprovedChanges.svg)  |
-| Add to Cart    | ![Login With Gmail](https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/ApprovedChanges.svg)     |
-| PayPal Payment | ![Login With Gmail](https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/ApprovedChanges.svg)     |
+| Feature        | Status                                                                                                          |
+| -------------- | --------------------------------------------------------------------------------------------------------------- |
+| GET            | |
+| POST           | |
+| PUT            | |
+| DELETE         | |
+| Add to Cart    | |
+| PayPal Payment | |
 
 ## Frontend: Blade + Tailwind CSS Framework
 
@@ -40,13 +39,13 @@
 
 | Feature         | Status                                                                                                                   |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| Admin UI        | ![Auth](https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/ApprovedChanges.svg)               |
-| Auth            | ![Auth](https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/ApprovedChanges.svg)               |
-| Notifi + socket | ![Auth](https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/ApprovedChanges.svg)               |
-| Shop            | ![Shop](https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/ApprovedChanges.svg)               |
-| Details         | ![Details](https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/ApprovedChanges.svg)            |
-| Cart            | ![Cart](https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/ApprovedChanges.svg)               |
-| PayPal Payment  | ![PayPal Integration](https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/ApprovedChanges.svg) |
+| Admin UI        |              |
+| Auth            |             |
+| Notifi + socket |            |
+| Shop            |             |
+| Details         |            |
+| Cart            |           |
+| PayPal Payment  | |
 
 ## Git Workflow
 
