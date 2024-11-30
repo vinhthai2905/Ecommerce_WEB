@@ -28,6 +28,12 @@ Route::get('/auth/{provider}/callback', [ProviderSocialiteController::class, 'ca
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 
+Route::post('/forgot-password', [AuthController::class, 'forgot_Password'])
+    ->middleware('guest')->name('password.email');
+
+Route::post('/reset-password', [AuthController::class, 'reset_Password'])
+    ->middleware('guest')->name('password.reset');
+
 // is Admin
 Route::group(['middleware' => ['auth:sanctum', CheckIsAdminMiddleware::class]], routes: function () {
 
