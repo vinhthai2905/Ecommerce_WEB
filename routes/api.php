@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ImageProductsController;
 
 // public client
 Route::get('/images/{filename}', [AuthController::class, 'getImage'])->middleware('guest');
@@ -32,6 +33,7 @@ Route::post('/register', [AuthController::class, 'register']);
 
 // is Admin
 Route::group(['middleware' => ['auth:sanctum', CheckIsAdminMiddleware::class]], routes: function () {
+    Route::post('/send-notifications', [NotificationController::class, 'sendNotifications']);
 
     Route::resource('/users', UsersController::class);
     Route::resource('/categories', CategoriesController::class);
