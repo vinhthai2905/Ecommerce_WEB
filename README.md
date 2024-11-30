@@ -2,7 +2,7 @@
 
 ## Technology
 
-- Laravel 11
+- Laravel 10
 - Blade template
 - Tailwind CSS
 - MySQL
