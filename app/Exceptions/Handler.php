@@ -4,7 +4,6 @@ namespace App\Exceptions;
 
 use App\Traits\HttpResponses;
 use Illuminate\Auth\AuthenticationException;
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,7 +20,7 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
-    public function render($request, Throwable $e) : Response
+    public function render($request, Throwable|\Throwable $e)
     {
         if ($e instanceof ValidationException) {
             return $this->errorResponse(
