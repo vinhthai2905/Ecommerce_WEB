@@ -39,6 +39,12 @@ Route::get('/auth/{provider}/callback', [ProviderSocialiteController::class, 'ca
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 
+Route::post('/forgot-password', [AuthController::class, 'forgot_Password'])
+    ->middleware('guest')->name('password.email');
+
+Route::post('/reset-password', [AuthController::class, 'reset_Password'])
+    ->middleware('guest')->name('password.reset');
+
 // Payment
 Route::get('/payment/{id}', [PaymentController::class, 'payment'])->name('vn_payment');
 Route::get('/payment/{id}/callback', [PaymentController::class, 'payment_callback'])->name('vn_payment_callback');
@@ -61,11 +67,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 });
 
-Route::post('/forgot-password', [AuthController::class, 'forgot_Password'])
-    ->middleware('guest')->name('password.email');
-
-Route::post('/reset-password', [AuthController::class, 'reset_Password'])
-    ->middleware('guest')->name('password.reset');
 
 // get Products
 Route::get('/get-products', [CustomerController::class, 'getProducts'])->middleware('guest');
