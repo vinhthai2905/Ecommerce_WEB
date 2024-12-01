@@ -34,9 +34,6 @@ Route::post('/email/resend', [EmailVerificationController::class, 'resend'])
 Route::get('/auth/{provider}', [ProviderSocialiteController::class, 'redirect'])->middleware('guest');
 Route::get('/auth/{provider}/callback', [ProviderSocialiteController::class, 'callback']);
 
-Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/info', [AuthController::class, 'info']);
-});
 
 // auth
 Route::post('/login', [AuthController::class, 'login']);
