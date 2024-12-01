@@ -11,16 +11,9 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ImageProductsController;
-<<<<<<< HEAD
 use App\Http\Controllers\CustomerController;
-=======
 use App\Http\Controllers\BillsController;
-<<<<<<< HEAD
->>>>>>> 68df1f7 (crud for billing orders)
-=======
 use App\Http\Controllers\CartsController;
-use App\Http\Controllers\NotificationController;
->>>>>>> d5dcdac (fixed custom request for bills, ongoing with carts crud(bugs, not yet fixed))
 
 // public client
 Route::get('/images/{filename}', [AuthController::class, 'getImage'])->middleware('guest');

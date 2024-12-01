@@ -1,13 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-<<<<<<< HEAD
-
-class BillsController extends Controller
-{
-    public function index()
-    {
-=======
 use App\Helpers\Helper;
 use App\Models\Bills;
 use App\Http\Resources\BillResource;
@@ -105,7 +98,5 @@ class BillsController extends Controller
             'Bill updated successfully',
             200
         );
->>>>>>> 68df1f7 (crud for billing orders)
-
     }
 }
