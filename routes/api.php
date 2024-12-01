@@ -11,7 +11,6 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ImageProductsController;
-use App\Http\Controllers\CustomerController;
 
 // public client
 Route::get('/images/{filename}', [AuthController::class, 'getImage'])->middleware('guest');
@@ -54,11 +53,6 @@ Route::post('/forgot-password', [AuthController::class, 'forgot_Password'])
 
 Route::post('/reset-password', [AuthController::class, 'reset_Password'])
     ->middleware('guest')->name('password.reset');
-
-// get Products
-Route::get('/get-products', [CustomerController::class, 'getProducts'])->middleware('guest');
-Route::get('/get-product/{id}', [CustomerController::class, 'getProduct'])->middleware('guest');
-
 
 // is Admin
 Route::group(['middleware' => ['auth:sanctum', CheckIsAdminMiddleware::class]], routes: function () {

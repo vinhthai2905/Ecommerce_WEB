@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Http\Resources\UsersResources;
-use App\Http\Resources\ProductCustomerResource;
-use App\Models\Product;
 
 class CustomerController extends Controller
 {
@@ -63,32 +61,6 @@ class CustomerController extends Controller
         return $this->successResponse(
             new UsersResources($user),
             'Updated successfully',
-            200
-        );
-    }
-
-    public function getProducts(Request $request)
-    {
-
-        $products = Product::paginate(10);
-        $productData = ProductCustomerResource::collection($products);
-
-        return $this->successResponse(
-            $productData,
-            '',
-            200,
-            $products->toArray()
-        );
-    }
-
-    public function getProduct(string $id)
-    {
-        $product = Product::find($id);
-        $productData = new ProductCustomerResource($product);
-
-        return $this->successResponse(
-            $productData,
-            '',
             200
         );
     }
