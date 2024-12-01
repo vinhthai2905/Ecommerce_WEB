@@ -4,21 +4,15 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-<<<<<<< HEAD
-=======
 use App\Models\User;
 use App\Models\Product;
->>>>>>> d5dcdac (fixed custom request for bills, ongoing with carts crud(bugs, not yet fixed))
 
 class BillResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
         return [
-<<<<<<< HEAD
 
-        ];
-=======
             'id' => $this->id,
             'vn_pay_code' => $this->vn_pay_code,
             'user_id' => User::find($this->user_id)->name,
@@ -28,7 +22,6 @@ class BillResource extends JsonResource
             'status' => $this->status,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-        ];;
->>>>>>> d5dcdac (fixed custom request for bills, ongoing with carts crud(bugs, not yet fixed))
+        ];
     }
 }
