@@ -50,7 +50,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::post('/update-profile', [\App\Http\Controllers\CustomerController::class, 'updateInfo']);
+    Route::post('/update-profile', [CustomerController::class, 'updateInfo']);
 });
 
 Route::post('/forgot-password', [AuthController::class, 'forgot_Password'])
