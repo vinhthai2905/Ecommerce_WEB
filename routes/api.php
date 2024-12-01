@@ -51,6 +51,12 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/update-profile', [CustomerController::class, 'updateInfo']);
+
+    Route::get('/get-carts', [CustomerController::class, 'getCarts']);
+    Route::post('/add-to-cart', [CustomerController::class, 'addToCart']);
+    Route::put('/update-cart/{id}', [CustomerController::class, 'updateCart']);
+    Route::delete('/remove-cart/{id}', [CustomerController::class, 'removeFromCart']);
+
 });
 
 Route::post('/forgot-password', [AuthController::class, 'forgot_Password'])
