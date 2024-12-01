@@ -11,9 +11,14 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ImageProductsController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\BillsController;
+use App\Http\Controllers\CartsController;
 
 // public client
 Route::get('/images/{filename}', [AuthController::class, 'getImage'])->middleware('guest');
+
+Route::get('/products', [ProductsController::class, 'index'])->middleware('guest');
 
 // AUTH
 // EMAIL Verification
@@ -45,7 +50,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::post('/update-profile', [\App\Http\Controllers\CustomerController::class, 'updateInfo']);
+    Route::post('/update-profile', [CustomerController::class, 'updateInfo']);
+
 });
 
 Route::post('/forgot-password', [AuthController::class, 'forgot_Password'])
@@ -53,6 +59,11 @@ Route::post('/forgot-password', [AuthController::class, 'forgot_Password'])
 
 Route::post('/reset-password', [AuthController::class, 'reset_Password'])
     ->middleware('guest')->name('password.reset');
+
+// get Products
+Route::get('/get-products', [CustomerController::class, 'getProducts'])->middleware('guest');
+Route::get('/get-product/{id}', [CustomerController::class, 'getProduct'])->middleware('guest');
+
 
 // is Admin
 Route::group(['middleware' => ['auth:sanctum', CheckIsAdminMiddleware::class]], routes: function () {
@@ -62,6 +73,8 @@ Route::group(['middleware' => ['auth:sanctum', CheckIsAdminMiddleware::class]], 
     Route::resource('/categories', CategoriesController::class);
     Route::resource('/products', ProductsController::class);
     Route::resource('/image-products', ImageProductsController::class);
+    Route::resource('/bills', BillsController::class);
+    Route::resource('/carts', CartsController::class);
 
 });
 
