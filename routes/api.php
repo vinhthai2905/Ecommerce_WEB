@@ -49,6 +49,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/notifications', [NotificationController::class, 'readNotification']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
+
+
 });
 
 Route::post('/forgot-password', [AuthController::class, 'forgot_Password'])
