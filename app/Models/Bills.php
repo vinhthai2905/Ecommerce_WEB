@@ -4,9 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-<<<<<<< HEAD
-=======
 /**
  *
  *
@@ -33,7 +30,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Bills whereVnPayCode($value)
  * @mixin \Eloquent
  */
->>>>>>> 68df1f7 (crud for billing orders)
+
 class Bills extends Model
 {
     use HasFactory;
