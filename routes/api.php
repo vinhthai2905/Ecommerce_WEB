@@ -14,6 +14,7 @@ use App\Http\Controllers\ImageProductsController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\BillsController;
 use App\Http\Controllers\CartsController;
+use App\Http\Controllers\PaymentController;
 
 // public client
 Route::get('/images/{filename}', [AuthController::class, 'getImage'])->middleware('guest');
@@ -40,6 +41,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 // auth
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
+
+// Payment
+Route::get('/payment/{id}', [PaymentController::class, 'payment'])->name('vn_payment');
+Route::get('/payment/{id}/callback', [PaymentController::class, 'payment_callback'])->name('vn_payment_callback');
 
 // middleware auth:sanctum
 Route::group(['middleware' => ['auth:sanctum']], function () {
