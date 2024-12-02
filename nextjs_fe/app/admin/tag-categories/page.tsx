@@ -7,45 +7,29 @@ import { ColumnDef } from '@tanstack/react-table';
 import React, { useEffect, useState } from 'react';
 import DataTitle from '@/components/Table/DataTitle';
 import api from '@/lib/api';
+import { TagCategories } from '@/core/model/tag';
 import { APIResponse } from '@/core/model/api';
 import { Pagination } from '@/core/model/pagination';
 import { useSearchParams } from 'next/navigation';
 import DataPagination from '@/components/Table/DataPagination';
-import { User, UserRoles } from '@/core/model/user';
 import { DataLoading } from '@/components/Table/DataLoading';
-import { Badge } from '@/components/ui/badge';
 
 type Props = {};
 
-const columns: ColumnDef<UserRoles>[] = [
+const columns: ColumnDef<TagCategories>[] = [
     {
         accessorKey: 'id',
         header: 'ID',
     },
     {
-        accessorKey: 'user',
-        header: 'Full Name',
-        cell: ({ row }) => {
-            return (
-                <div className='flex items-center gap-2'>
-                    <img
-                        src={(row.getValue('user') as User).avatar}
-                        alt='avatar'
-                        className='h-8 w-8 rounded-sm'
-                    />
-                    {(row.getValue('user') as User).first_name}{' '}
-                    {(row.getValue('user') as User).last_name}
-                </div>
-            );
-        },
+        accessorKey: 'title',
+        header: 'Title',
     },
     {
-        accessorKey: 'role',
-        header: 'Role',
+        accessorKey: 'tags',
+        header: 'Tags',
         cell: ({ row }) => {
-            return (
-                <Badge>{row.getValue('role') === 1 ? 'Admin' : 'Member'}</Badge>
-            );
+            return <div>{(row.getValue('tags') as string[]).length}</div>;
         },
     },
     {
@@ -74,23 +58,23 @@ const columns: ColumnDef<UserRoles>[] = [
     },
 ];
 
-export default function UserRolesPage({}: Props) {
-    const [data, setData] = useState<UserRoles[]>([]);
+export default function TagCategoriesPage({}: Props) {
+    const [data, setData] = useState<TagCategories[]>([]);
     const [pagination, setPagination] = useState<Pagination>();
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setLoading] = useState(true);
     const searchParams = useSearchParams();
 
     useEffect(() => {
         const fetchData = async () => {
-            const res: APIResponse<UserRoles[]> =
+            const res: APIResponse<TagCategories[]> =
                 await api.fetchDataSearchAndPagination({
                     q: searchParams.get('q'),
                     page: searchParams.get('page'),
-                    endpoint: '/user-roles',
+                    endpoint: '/tag-categories',
                 });
             setData(res.data);
             setPagination(res.pagination);
-            setIsLoading(false);
+            setLoading(false);
         };
         fetchData();
     }, [searchParams]);

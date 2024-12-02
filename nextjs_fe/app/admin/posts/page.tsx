@@ -1,5 +1,3 @@
-/* eslint-disable no-empty-pattern */
-
 'use client';
 
 import { DataTable } from '@/components/Table/DataTable';
@@ -7,45 +5,23 @@ import { ColumnDef } from '@tanstack/react-table';
 import React, { useEffect, useState } from 'react';
 import DataTitle from '@/components/Table/DataTitle';
 import api from '@/lib/api';
-import { APIResponse } from '@/core/model/api';
-import { Pagination } from '@/core/model/pagination';
 import { useSearchParams } from 'next/navigation';
+import { APIResponse } from '@/core/model/api';
+import { Posts } from '@/core/model/posts';
 import DataPagination from '@/components/Table/DataPagination';
-import { User, UserRoles } from '@/core/model/user';
+import { Pagination } from '@/core/model/pagination';
 import { DataLoading } from '@/components/Table/DataLoading';
-import { Badge } from '@/components/ui/badge';
 
-type Props = {};
-
-const columns: ColumnDef<UserRoles>[] = [
+const columns: ColumnDef<Posts>[] = [
     {
-        accessorKey: 'id',
-        header: 'ID',
+        accessorKey: 'title',
+        header: 'Title',
     },
     {
-        accessorKey: 'user',
-        header: 'Full Name',
-        cell: ({ row }) => {
-            return (
-                <div className='flex items-center gap-2'>
-                    <img
-                        src={(row.getValue('user') as User).avatar}
-                        alt='avatar'
-                        className='h-8 w-8 rounded-sm'
-                    />
-                    {(row.getValue('user') as User).first_name}{' '}
-                    {(row.getValue('user') as User).last_name}
-                </div>
-            );
-        },
-    },
-    {
-        accessorKey: 'role',
-        header: 'Role',
-        cell: ({ row }) => {
-            return (
-                <Badge>{row.getValue('role') === 1 ? 'Admin' : 'Member'}</Badge>
-            );
+        accessorKey: 'content',
+        header: 'Content',
+        cell: ({ row }: { row: any }) => {
+            return <div>{row.getValue('content').slice(0, 100) + '...'}</div>;
         },
     },
     {
@@ -72,26 +48,41 @@ const columns: ColumnDef<UserRoles>[] = [
             );
         },
     },
+    {
+        accessorKey: 'tags',
+        header: 'Tags',
+        cell: ({ row }) => {
+            return <div>{(row.getValue('tags') as string[]).join(', ')}</div>;
+        },
+    },
+    {
+        accessorKey: 'comments',
+        header: 'Comments',
+        cell: ({ row }) => {
+            return <div>{(row.getValue('comments') as string[]).length}</div>;
+        },
+    },
 ];
 
-export default function UserRolesPage({}: Props) {
-    const [data, setData] = useState<UserRoles[]>([]);
+export default function PostsPage() {
+    const [data, setData] = useState<Posts[]>([]);
     const [pagination, setPagination] = useState<Pagination>();
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const searchParams = useSearchParams();
 
     useEffect(() => {
         const fetchData = async () => {
-            const res: APIResponse<UserRoles[]> =
+            const posts: APIResponse<Posts[]> =
                 await api.fetchDataSearchAndPagination({
                     q: searchParams.get('q'),
                     page: searchParams.get('page'),
-                    endpoint: '/user-roles',
+                    endpoint: '/posts',
                 });
-            setData(res.data);
-            setPagination(res.pagination);
+            setData(posts.data);
+            setPagination(posts.pagination);
             setIsLoading(false);
         };
+
         fetchData();
     }, [searchParams]);
 
