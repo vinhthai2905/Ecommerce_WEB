@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79388f4b-cf3c-46d7-9511-2258ac5ec8a8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,10 +34,10 @@
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/vinhthai2905/Ecommerce_WEB",
-    "accountId": "23cb70c7-7e3b-4784-9a46-d780f470cb60"
+    "accountId": "366567c1-d6ef-434f-b140-1693dbb29f7f"
   }
 }]]></component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\php-8.3.12\php.exe">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\php-8.3.13\php.exe">
     <include_path>
       <path value="$PROJECT_DIR$/laravel_be/vendor/sebastian/comparator" />
       <path value="$PROJECT_DIR$/laravel_be/vendor/sebastian/code-unit-reverse-lookup" />
@@ -179,7 +178,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "interface/forgot-password",
+    "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
