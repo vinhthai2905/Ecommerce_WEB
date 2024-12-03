@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 Use App\Http\Controllers\AccountController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,4 +44,11 @@ Route::group(['prefix' => 'account'], function(){
 
     Route::get('/reset-password', [AccountController::class, 'reset_password'])->name('account.reset_password');
     Route::post('/reset-password', [AccountController::class, 'check_reset_password']);
+});
+
+// Group giỏ hàng
+Route::prefix('cart')->group(function () {
+    Route::get('/', [CartController::class, 'index'])->name('cart.index');  
+    Route::post('/update/{id}', [CartController::class, 'update'])->name('cart.update');  
+    Route::post('/remove/{id}', [CartController::class, 'remove'])->name('cart.remove'); 
 });
